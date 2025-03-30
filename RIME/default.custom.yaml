@@ -1,0 +1,51 @@
+customization:
+  distribution_code_name: Weasel
+  distribution_version: 0.16.3
+  generator: "Rime::SwitcherSettings"
+  modified_time: "Wed Nov 13 20:30:24 2024"
+  rime_version: 1.11.2
+patch:
+  style:
+    # 主题设置
+    color_scheme: lost_temple  # 主题颜色
+    horizontal: true           # 横向排列
+
+    notification_window:
+      horizontal: true        # 水平布局
+      spacing: 10             # 间距
+      font_face: "Microsoft YaHei"  # 字体
+      font_point: 16          # 字号
+      back_color: 0xFFFFFF    # 背景色（白色）
+      border_color: 0xCCCCCC  # 边框色
+      border_width: 1         # 边框粗细
+
+  # 切换中英文配置
+  switcher:
+    hotkeys:
+      - Control_R  # 使用右侧 Ctrl 切换
+    save_options: [ noop ]  # 切换时不保留未完成的输入
+    abbreviate_options: [ noop ]  # 不显示切换提示
+    show_notifications: true  # 显示提示
+    save_options: [ascii_mode, full_shape]  # 保存大写和全角状态
+    
+  # 英文方案配置
+  "ascii_composer/switch_key":
+    Shift_L: noop        # 禁用左Shift切换
+    Control_R: commit_code # 按下右侧Ctrl时提交编码
+    Shift_R: noop        # 禁用右Shift切换
+    Caps_Lock: commit_code # 按下CapsLock时提交编码
+    good_old_caps_lock: true # 启用CapsLock键的传统功能
+    switch_interval: 0 # 切换间隔为0秒
+
+  # 菜单设置
+  menu:
+    page_size: 5        # 每页显示 5 个候选
+    candidate_format: "%c.\u2005%@ "  # 优化候选排版（可选）
+  schema_list:
+    - {schema: rime_frost}
+
+  # 按键绑定设置
+  key_binder:
+    bindings:
+      - { accept: Return, send: Commit, when: composing }
+      - { accept: KP_Enter, send: Commit, when: composing }
