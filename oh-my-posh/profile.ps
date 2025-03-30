@@ -1,0 +1,17 @@
+oh-my-posh init pwsh | Invoke-Expression
+oh-my-posh init pwsh --config "$env:POSH_THEMES_PATH\my-dracula.omp.json" | Invoke-Expression
+
+# 设置代理
+function proxy {
+    $env:HTTP_PROXY     = "http://127.0.0.1:7897"
+    $env:HTTPS_PROXY    = "http://127.0.0.1:7897"
+    Write-Host "✅ 代理已启用" -ForegroundColor Green
+}
+
+# 取消代理
+function unproxy {
+    # 示例：清空代理变量
+    $env:HTTP_PROXY     = $null
+    $env:HTTPS_PROXY    = $null
+    Write-Host "❌ 代理已关闭" -ForegroundColor Red
+}
