@@ -2,8 +2,15 @@ customization:
   distribution_code_name: Weasel
   distribution_version: 0.16.3
   generator: "Rime::SwitcherSettings"
-  modified_time: "Wed Nov 13 20:30:24 2024"
+  modified_time: "Fri Nov  8 10:11:44 2024"
   rime_version: 1.11.2
+key_binder:
+  bindings:
+    # - { accept: Return, send: Commit, when: composing }
+    # - { accept: KP_Enter, send: Commit, when: composing }
+    - { when: paging, accept: minus, send: Page_Up }     # - 号上翻页
+    - { when: paging, accept: equal, send: Page_Down }   # Shift+= 即 + 号下翻页
+    - { when: composing, accept: Control_R, send: Commit }
 patch:
   style:
     # 主题设置
@@ -24,28 +31,25 @@ patch:
     hotkeys:
       - Control_R  # 使用右侧 Ctrl 切换
     save_options: [ noop ]  # 切换时不保留未完成的输入
-    abbreviate_options: [ noop ]  # 不显示切换提示
+    abbreviate_options: [ ~ ]  # 不显示切换提示
     show_notifications: true  # 显示提示
-    save_options: [ascii_mode, full_shape]  # 保存大写和全角状态
-    
+    save_options: [input, ascii_mode, full_shape]  # 保存大写和全角状态
+
   # 英文方案配置
-  "ascii_composer/switch_key":
-    Shift_L: noop        # 禁用左Shift切换
-    Control_R: commit_code # 按下右侧Ctrl时提交编码
-    Shift_R: noop        # 禁用右Shift切换
-    Caps_Lock: commit_code # 按下CapsLock时提交编码
-    good_old_caps_lock: true # 启用CapsLock键的传统功能
-    switch_interval: 0 # 切换间隔为0秒
+  ascii_composer:
+    good_old_caps_lock: true  # 启用CapsLock键的传统功能
+    switch_key:
+      Shift_L: noop             # 禁用左Shift切换
+      Shift_R: noop             # 禁用右Shift切换
+      Control_R: commit_code    # 按下右侧Ctrl时提交编码
+      Caps_Lock: clear    # 按下CapsLock时提交编码
+      # good_old_caps_lock: true  # 启用CapsLock键的传统功能
+      switch_interval: 0        # 切换间隔为0秒
 
   # 菜单设置
   menu:
     page_size: 5        # 每页显示 5 个候选
     candidate_format: "%c.\u2005%@ "  # 优化候选排版（可选）
+
   schema_list:
     - {schema: rime_frost}
-
-  # 按键绑定设置
-  key_binder:
-    bindings:
-      - { accept: Return, send: Commit, when: composing }
-      - { accept: KP_Enter, send: Commit, when: composing }
